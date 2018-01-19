@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/framework7.ios.css">
+        <link rel="stylesheet" href="css/framework7.ios.colors.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+            
+        
+        
+        <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"> </script>
+        <script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"> </script>
+        <script type="text/javascript" src="js/framework7.js"></script>
+        
+        <script type="text/javascript" src="cordova.js"></script>
+<!--        <script type="text/javascript" src="js/overview.js"></script>-->
+
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="plugin/Device.js"></script>
+        
+        <script type="text/javascript" src="js/context.js"></script>
+        <script type="text/javascript" src="js/soap.js"></script>
+        <script type="text/javascript" src="js/database.js"></script>
+        
+        <script type="text/javascript" src="js/DynamicViewLibrary.js"></script>
+        <script type="text/javascript" src="js/customscroll.js"></script>
+
+<!--        <link rel="stylesheet" type="text/css" href="css/style.css">-->
+
+<script type="text/javascript" src="js/colleague.js"></script>
+
+<script type="text/javascript" src="js/SO_detail.js"></script>
+<script type="text/javascript" src="js/context_detailScreen.js"></script>
+
+<script type="text/javascript" src="js/jSignature.min.js"></script>
+
+
+
+    </head>
+    <body id="body">
+        
+<!--        <br/><br/>
+        <a href="index.html">Back</a>
+        <br/><br/>-->
+
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar" style="height:60px;background: #FF7F24;">
+                <div class="navbar-inner">
+                        <div class="left" onclick="backButtonClicked();">
+<!--                            <a href="overview.html" class="external link">-->
+                            <a id="openOverviewOnBackNavigaiton" href="#" class="external link">
+<!--                                    <i class="icon icon-back"></i>-->
+                                    <img style="width:25px;height:25px;" src="img/BackIcon.png" />
+                                    <span style="color:white;">Back</span>
+                            </a>
+                        </div>
+                        <div class="center" id="ScreenTitle" style="color:white;"></div>
+                        <div class="right" onclick="menuButtonClicked();">
+<!--                            <a href="#" class="open-vertical-modal">-->
+                                <img style="width:30px;height:30px;" src="img/Checked.png" />
+<!--                            </a>-->
+                        </div>
+                </div>
+        </div>
+        
+<!--        Original code-->
+<!--        <div id="SO_DetailHtmlBody">-->
+
+<!--        Overflow-y:scroll isn't making the page scroll vertically-->
+<!--        <div id="SO_DetailHtmlBody" style="overflow-y:scroll; overflow-x:hidden; height:5000px;">-->
+
+
+<!--Try adding this to 'div id="SO_DetailHtmlBody"' tag and remove overview-scroll'-->
+        <div data-page="grid" class="page">
+            <div class="page-content" style="margin-top:30px;">
+<!--                <div class="content-block">
+                </div>
+-->
+                <div class="ks-grid">
+                    <div class="content-block">
+
+
+<!--
+                        <div style="height:190px;width:320px;border: 1px solid #ddd;">
+                            <div class="row" id="SOsignature" style="height:130px;">
+                            </div>
+                            <div class="row" id="signHereLabel" style="height:10px;margin-top:-10px;">Sign here
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin-top:-8px;">
+                            </div>
+                            <div class="row no-gutter" style="height:40px;margin-top:-15px;">
+                                <div class="col-20" style="height:35px;"></div>
+                                <div class="col-20" style="height:35px;">
+                                    <img id="ClearSignature" style="width:30px;height:30px;" src="img/ClearSignature.png" />
+                                </div>
+                                <div class="col-20" style="height:35px;"></div>
+                                <div class="col-20" style="height:35px;">
+                                    <img id="SaveSignature" style="width:30px;height:30px;" src="img/Done_Signature.png" />
+                                </div>
+                                <div class="col-20" style="height:35px;"><img id="DisplySignature" style="width:30px;height:30px;" src="img/Done_Signature.png" /></div>
+                            </div>
+                        </div>
+                        
+                        <script>
+
+                            $("#SOsignature").jSignature({height:130,width:320,'decor-color':'transparent'});
+
+
+/*                            $('#SOsignature').on('touchmove', function(e) {
+                                document.getElementById("signHereLabel").hidden = "hidden";
+                                });
+
+                        
+//                            $('#SOsignature').ontouchstart = function()
+                            $('#SOsignature').addEventListener('touchstart', function()
+                                {
+                                    document.getElementById("signHereLabel").hidden = "hidden";
+                                },false);
+*/
+                        
+                        
+                            $("#SOsignature").bind('change', function(e){
+//                                $("#signHereLabel").hide();
+                                document.getElementById("signHereLabel").innerHTML = "";
+                                });
+                        
+                        
+                        
+                            $( "#ClearSignature" ).click(function() {
+//                                $("#SOsignature").jSignature("clear");
+                                $("#SOsignature").jSignature("reset");
+                            });
+                            
+                            var signatureData;
+                            $( "#SaveSignature" ).click(function() {
+//                                signatureData = $("#SOsignature").jSignature("getData", "base30");
+                                signatureData = $("#SOsignature").jSignature("getData");
+                                                        
+                                console.log("Signature data(base30) : " + signatureData);
+                                console.log("Signature data(base64) : " + $("#SOsignature").jSignature("getData"));
+
+                            });
+                            
+                            $( "#DisplySignature" ).click(function() {
+//                                $("#SOsignature").jSignature("setData", "data:" + signatureData);
+//                                $("#SOsignature").jSignature("importData", "data:" + signatureData);
+                                document.getElementById("SOsignature").innerHTML = '<img src="' + signatureData + '"/>';
+                            });
+
+                        </script>
+-->
+                        
+                        
+<!--                        <div class="content-block-title">Picker with single value</div>-->
+<!--                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input type="text" placeholder="Other" readonly id="picker-device">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+-->
+<!--
+                        <span>
+                            <input type="text" placeholder="Other" readonly id="picker-device">
+                        </span>
+                        
+                        
+                        <script>
+                            
+                            var myApp = new Framework7();
+                            var $$ = Dom7;
+                        
+                        var rejReasonArray = [];
+                        
+                        
+                        function fetchRejectionReasonValues()
+                        {
+                            db.transaction(function (tx)
+                                {
+                                    rejectionReasonQuery = 'SELECT VALUE from SERVICE_DOX_CONTEXT_DATA_GET_ZGSSMWST_APPPRFLPRMTR01';
+                                           
+                                    tx.executeSql(rejectionReasonQuery, [], function(tx,rejectionReasonValueResults)
+                                    {
+                                        if(rejectionReasonValueResults.rows.length > 0)
+                                        {
+                                            for (var i=0 ; i<rejectionReasonValueResults.rows.length ; i++)
+                                            {
+                                                rejReasonArray.push(rejectionReasonValueResults.rows.item(i).VALUE);
+                                                console.log("rejection reason value : " + rejectionReasonValueResults.rows.item(i).VALUE);
+                                            }
+                                        }
+                                    },null);
+                                });
+                            return rejReasonArray;
+                        }
+                        
+                        
+                        var pickerDevice = myApp.picker({
+                            input: '#picker-device',
+                            cols: [
+                                {
+                                   textAlign: 'center',
+                                   values: fetchRejectionReasonValues()
+                                }
+                            ]
+                        });
+                            
+                        </script>
+-->
+
+
+
+<!--<div class="row">-->
+<!--    <div class="col-50">-->
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-input">University Hospital</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+<!--                        <div class="item-inner">-->
+                            <div class="row">
+                                <div>Email Label1</div>
+                            </div>
+                            <div class="row">
+                                <div>Email</div>
+                            </div>
+<!--                        </div>-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+<!--    </div>-->
+<!--    <div class="col-50">-->
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Status</div>
+                            <div class="item-input">Released</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Textarea</div>
+                            <div class="item-input">
+                                <textarea></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="list-block media-list">
+    <ul>
+        <li class="align-top">
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">Textarea</div>
+                    <div class="item-input">
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+<!--                    <div class="item-title label">E-mail Label1</div>-->
+                    <div class="item-input">Email</div>
+                </div>
+            </div>
+        </li>
+        
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">E-mail Label2</div>
+                    <div class="item-input">Email</div>
+                </div>
+            </div>
+        </li>
+        
+        <li>
+<!--            <div class="item-content">-->
+                <div class="item-inner">
+<!--                    <div class="item-title label">E-mail Label3</div>-->
+                    <div class="item-input">Email</div>
+                </div>
+<!--            </div>-->
+        </li>
+        
+       
+        
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+<!--                    <div class="item-title-row">-->
+                        <div class="item-title">E-mail Label5</div>
+<!--                    </div>-->
+                    <div class="item-subtitle">E-mail Label5</div>
+<!--                    <div class="item-input">Email</div>-->
+                </div>
+            </div>
+        </li>
+        
+        <li><a href="#" class="item-link item-content">
+            <div class="item-media"><img src="http://lorempixel.com/88/88/people/2" width="44"></div>
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">Don't Stop Me Now</div>
+                </div>
+                <div class="item-subtitle">Queen</div>
+            </div></a>
+        </li>
+
+    </ul>
+</div>
+
+
+<!--
+<div>
+    <input type="text" placeholder="Select date" readonly id="calendar-date-format">
+</div>
+
+    <script>
+    var myApp = new Framework7();
+    var $$ = Dom7;
+    
+    var calendarDateFormat = myApp.calendar({
+    input: '#calendar-date-format',
+    dateFormat: 'DD, MM dd, yyyy'
+    });
+    </script>
+-->    
+
+
+
+<div>
+<input type="text" id="ip-ios-1" readonly>
+</div>
+<script>
+    $("#ip-ios-1").AnyPicker(
+                             {
+                             mode: "datetime",
+                             
+                             showComponentLabel: true,
+                             
+                             dateTimeFormat: "MMMM d,yyyy hh:mm AA",
+                             
+                             onChange: function(iRow, iComp, oSelectedValues)
+                             {
+                             console.log("Changed Value : " + iRow + " " + iComp + " " + oSelectedValues);
+                             },
+                             
+                             theme: "iOS" // "Default", "iOS", "Android", "Windows"
+                             });
+</script>
+                                
+
+
+
+                        <div class="row" id="SO_DetailHtmlBody">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    
+    document.addEventListener("resume", onResumeFunc, false);
+    
+
+    loadfunction = SO_Details;
+    app.initialize();
+    
+</script>
+
+
+<!--
+<div class="popup diagPopup">
+    <div class="content-block">
+        <p>
+        <a href="#" class="close-popup">Close popup
+        </a>
+        </p>
+        <p id="diagnosisResponseParser">
+        </p>
+        
+        <p onclick="disableDiagnosis();"><a href="#" class="button button-fill color-red">Disable diagnosis</a></p>
+
+        <a id="diagnosisEmail" href="#" class="external link">
+            <img style="width:60px;height:60px;margin-top:15%;" src="img/Email.png" onclick="sendDiagnosisMail();" />
+        </a>
+    </div>
+</div>
+-->
+
+
+<div class="popup diagPopup">
+    <div class="content-block">
+        <p>
+        <a href="#" class="close-popup">Close popup
+        </a>
+        </p>
+        <p id="diagnosisResponseParser">
+        </p>
+        
+        <div class="row" style="margin-top:15%;">
+            <div class="col-40">
+                <p onclick="disableDiagnosis();"><a href="#" class="button button-fill color-red">Disable diagnosis</a></p>
+            </div>
+            
+            <div class="col-10">
+                <a id="diagnosisEmail" href="#" class="external link">
+                    <img style="width:60px;height:60px;" src="img/Email.png" onclick="sendDiagnosisMail();" />
+                </a>
+            </div>
+            <div class="col-50">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    </body>
+</html>

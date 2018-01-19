@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/framework7.ios.css">
+            
+            
+        <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
+            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"> </script>
+        <script>
+            
+            
+        </script>
+        <script type="text/javascript" src="js/framework7.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+<!--        <script type="text/javascript" src="js/index.js"></script>-->
+
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/QuickTest.js"></script>
+        <script type="text/javascript" src="js/soap.js"></script>
+
+    </head>
+    <body>
+
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar" style="height:60px;background: #FF7F24;">
+            <div class="navbar-inner">
+                <div class="left" onclick="backButtonClicked();">
+                    <a href="index.html" class="item-link item-content external link">
+                    <img style="width:35px;height:35px;" src="img/ServiceProIcon.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div data-page="grid" class="page">
+            <div class="page-content" style="margin-top:25px;">
+                <div class="content-block">
+                </div>
+                <div class="ks-grid">
+                    <div class="content-block">
+                        
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center">
+                                <img style="margin-top:20%;" src="img/gss.gif" />
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center">
+                                <span style="font-size:15px;color: black;">Apps for the Mobile Service Professional tailored for your specific needs from GlobalSoft Solutions Inc.</span>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center">
+                                <span class="center" style="font-size:15px;color: black;">Edition:</span> <span style="font-size:15px;color: black;">iOS    </span><br />
+                                <span class="center" style="font-size:15px;color: black;">Version:  <script>document.write(window.localStorage.getItem("versionName"));</script></span><br />
+                                <span style="font-size:15px;color: black;">Integrated with: </span> <br />
+                                <span style="font-size:15px;color: black;">SAP CRM 7.0  SAP ECC 6.0</span><br /><br />
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center">
+                                <span style="font-size:15px;color: black;">iOS & SAP are the registered TM of the respective companies.</span>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center" style="background-color:#BCD2EE;">
+                            <div class="row">
+                                 <p style="line-height:2;margin-left:10px;">
+                                <span style="font-size:15px;color: black;">GDID:    <script>document.write(window.localStorage.getItem("deviceid"));</script></span><br />
+                                <span style="font-size:15px;color: black;">Alt.GDID:    <script>document.write(window.localStorage.getItem("altdeviceid"));</script></span><br />
+                                <span style="font-size:15px;color: black;">iOS Version: <script>document.write(window.localStorage.getItem("iOSVersion"));</script></span><br />
+                                <span style="font-size:15px;color: black;">Server:  <script>
+                                    var webServiceURL = window.localStorage.getItem("webServiceUrl");
+                                    document.write(webServiceURL.substring(webServiceURL.indexOf("/") + 2).substring(0, webServiceURL.substring(webServiceURL.indexOf("/") + 2).indexOf(':')));
+                                    </script></span>
+                                </p>
+                            <div>
+<!--                                <script>
+                                    var mailBody = sendMailRegistration();
+                                </script>
+-->
+<!--                                <a href="mailto:gss.mobile@globalsoft-solutions.com?subject=A Message from TCW ServicePro User">-->
+                                <a id="emailLink" href="#" class="external link">
+                                  <img style="width:60px;height:60px;margin-top:50px;margin-left:30px;margin-right:10px;" src="img/Email.png" onclick="sendMailRegistration();" />
+<!--                                  <img style="width:60px;height:60px;margin-top:50px;margin-left:20px;" src="img/Email.png" />-->
+                                </a>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="left"></div>
+                            <div class="center">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <a id="quickCheck" href="#">
+                                            <img style="width:60px;height:60px;" src="img/quickCheck.png" onclick="quickTest();" />
+                                        </a>
+                                        <div class="row">Quick Check</div>
+                                    </div>
+                                    <div class="col-50">
+                                        <a id="settings" href="#">
+                                            <img style="width:60px;height:60px;" src="img/settings.png" onclick="settingsPopupOpen();"/>
+                                        </a>
+                                        <div class="row">Settings</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        
+                        
+                        
+                        
+<!--
+                        <form id="myform" class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Name</div>
+                                            <div class="item-input">
+                                                <input type="text" name="name" placeholder="Your name">
+                                                    </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Switch</div>
+                                            <div class="item-input">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" name="switch">
+                                                        <div class="checkbox"></div>
+                                                        </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                        
+                        <div class="content-block">
+                            <a href="#" class="button form-from-data">Fill Up Form</a>
+                        </div>
+-->
+
+
+
+
+
+<!--
+<label class="label-switch">
+    <input type="checkbox"/>
+    <div class="checkbox toggleButton"></div>
+</label>
+-->
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+<div class="popup diagnosis-popup">
+    <div class="content-block">
+        <div class="row" style="background:#6495ED;font-size:15px;height:100%;">
+            <div class="col-75" style="background:#6495ED;color:black;float:left;">Gss Mobile Diagnosis and Checks</div>
+            <div class="col-25" style="background:#6495ED;">
+                <a href="#" class="close-popup">
+                    <span style="color:white;">Close</span>
+                </a>
+            </div>
+        </div>
+        <div id="quickCheckApiResult" style="color:black;margin-top:15%;"></div>
+        <div class="row">
+            <div class="left"></div>
+            <div class="center"></div>
+            <div class="right">
+                <a id="quickCheckDiagnosisEmail" href="#" class="external link">
+                <img style="width:60px;height:60px;margin-top:15%;" src="img/Email.png" onclick="sendQuickCheckDiagnosisMail();" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="popup settings-popup">
+    <div class="content-block">
+        <div class="row" style="background:#6495ED;font-size:15px;height:100%;">
+            <div class="col-75" style="background:#6495ED;color:black;float:left;">Settings</div>
+            <div class="col-25" style="background:#6495ED;">
+                <a href="#" class="close-popup">
+                    <span style="color:white;">Close</span>
+                </a>
+            </div>
+        </div>
+        <form id="my-form" class="list-block store-data">
+        <ul><li>
+        <div class="row" style="margin-top:15%;">
+            <div class="item-content">
+                <div class="item-inner">
+<!--                    <div class="row">-->
+                        <div class="item-title label" style="color:black;width:250px;">Interaction diagnosis</div>
+                        <div class="item-input" id="settings_Switch">
+                            <label class="label-switch">
+<!--                                <input type="checkbox" class="switchInput" name="settingsSwitch"/>-->
+<!--                                <div class="checkbox"></div>-->
+                                <input type="checkbox" name="settingsSwitch"/>
+                                <div class="checkbox switchInput"></div>
+
+<!--                                <div class="checkbox" onclick="toggleSwitchClicked();"></div>-->
+                            </label>
+                        </div>
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+        </li></ul>
+        </form>
+        
+        
+        
+<!--
+        <label class="switch" id="toggleSwitch">
+            <input type="checkbox"/>
+                <div class="slider round"></div>
+        </label>
+        
+        <div class="button buttonClicked">Button</div>
+-->
+
+        
+        
+    </div>
+</div>
+
+
+<script>
+    var myApp = new Framework7();
+    
+    var $$ = Dom7;
+    
+    
+    document.addEventListener("resume", onResumeFunc, false);
+
+
+/*
+    $$('toggleButton').addClass('label-switch input[type="checkbox"]:checked');
+
+    
+    
+//    $$('.buttonClicked').on('click', function(){
+
+    $$('.switchInput').on('click', function(){
+
+
+//        var isVisible = $( "#toggleSwitch" ).is( ":visible" );
+//        alert("isVisible : " + isVisible);
+                            
+//        var isHidden = $( "#toggleSwitch" ).is( ":hidden" );
+//        alert("isHidden : " + isHidden);
+
+                            
+        var result = document.getElementsByClassName("switchInput")[0].checked ? 'yes' : 'no'
+        if (result == "yes")
+            alert("swich is on");
+        else
+            alert("switch is off");
+
+    });
+*/
+
+
+$$('.form-from-data').on('click', function(){
+                         
+                         var formData = {
+                         'name': 'John',
+                         'switch': ['on']
+                         }
+                         myApp.formFromData('#myform', formData);
+                         
+                         
+/*                         myApp.formStoreData('myform', {
+                                             'name': 'John',
+                                             'switch': [],
+                                             });
+                         
+                         var storedData = myApp.formGetData('myform');
+                         if(storedData) {
+                         alert(JSON.stringify(storedData));
+                         }
+*/                         
+                         });
+    
+    
+    
+
+    $$('.settings-popup').on('popup:open', function () {
+                             
+        var diagnosisButtonStatusFlag = window.localStorage.getItem("diagnosisButtonStatus");
+  
+        var formData;
+                             
+        if(diagnosisButtonStatusFlag == "Yes")
+            {
+                formData = {
+                             'settingsSwitch': ['on']
+                                }
+            }
+        else
+            {
+                formData = {
+                             'settingsSwitch': ['off']
+                             }
+            }
+                            
+        myApp.formFromData('#my-form', formData);
+                
+    });
+    
+    
+    $$('.switchInput').on('click', function(){
+        if(window.localStorage.getItem("diagnosisButtonStatus") == "Yes")
+            window.localStorage.setItem('diagnosisButtonStatus',"No");
+        else
+            window.localStorage.setItem('diagnosisButtonStatus',"Yes");
+    });
+
+/*
+        var storedData = myApp.formGetData('my-form');
+
+        myApp.formFromData('#my-form', storedData);
+*/
+/*
+                             var formData = {
+                             'settingsSwitch': ['yes']
+                             }
+                             
+                             myApp.formFromData('#my-form', formData);
+});
+*/
+ 
+/*
+    $$('#settings_Switch').on('click', function(){
+                              
+        var storedData1 = myApp.formStoreData('my-form', {
+            'settingsSwitch': ['yes'],
+        });
+
+    });
+*/
+
+
+//            app.initialize();
+
+
+
+loadfunction = infoPageLoad;
+app.initialize();
+
+
+</script>
+
+    </body>
+</html>
